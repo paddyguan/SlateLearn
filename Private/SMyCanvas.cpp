@@ -1,6 +1,7 @@
 ﻿#include "SMyCanvas.h"
 
 #include "SMyButton.h"
+#include "SMyTreeView.h"
 #include "Widgets/Input/SComboBox.h"
 
 
@@ -8,6 +9,7 @@ void SMyCanvas::Construct(const FArguments& InArgs)
 {
 	SCanvas::Construct(InArgs);
 
+	//添加自定义的按钮，定死位置显示
 	AddSlot()
 	.Position(FVector2d(100,100))
 	.Size(FVector2d(100,40))
@@ -22,6 +24,7 @@ void SMyCanvas::Construct(const FArguments& InArgs)
 		SNew(SMyButton)
 	];
 
+	//添加选项
 	Options.Empty();
 	Options.Add(MakeShareable(new FString("Apple1")));
 	Options.Add(MakeShareable(new FString("Apple2")));
@@ -56,9 +59,10 @@ void SMyCanvas::Construct(const FArguments& InArgs)
 		]
 	];
 
+	//添加自动水平布局
 	AddSlot()
 	.Position(FVector2d(100,300))
-	.Size(FVector2d(400,80))
+	.Size(FVector2d(300,80))
 	[
 		SNew(SHorizontalBox)
 		+SHorizontalBox::Slot()
@@ -74,5 +78,32 @@ void SMyCanvas::Construct(const FArguments& InArgs)
 			SNew(SButton)	
 		]
 	];
+
+	//添加自动垂直布局
+	AddSlot()
+	.Position(FVector2d(100,400))
+	.Size(FVector2d(100,200))
+	[
+		SNew(SVerticalBox)
+		+SVerticalBox::Slot()
+		[
+			SNew(SButton)
+		]
+		+SVerticalBox::Slot()
+		[
+			SNew(SButton)
+		]
+		+SVerticalBox::Slot()
+		[
+			SNew(SButton)
+		]
+	];
+
+	//添加树形图
+	AddSlot()
+	.Position(FVector2d(500,300))
+	.Size(FVector2d(200,200))
+	[
+		SNew(SMyTreeView)];
 	
 }
