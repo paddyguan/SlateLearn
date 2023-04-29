@@ -15,8 +15,23 @@ void SMyTreeView::Construct(const FArguments& InArgs)
 
 	Data01->Children.Add(Data011);
 	Data01->Children.Add(Data012);
+
+	TSharedPtr<UTreeItemData> Data02 = MakeShareable(NewObject<UTreeItemData>());
+	Data02->MyName = FString("Data02");
+	TSharedPtr<UTreeItemData> Data021 = MakeShareable(NewObject<UTreeItemData>());
+	Data021->MyName = FString("Data021");
+	TSharedPtr<UTreeItemData> Data022 = MakeShareable(NewObject<UTreeItemData>());
+	Data022->MyName = FString("Data022");
+	TSharedPtr<UTreeItemData> Data023 = MakeShareable(NewObject<UTreeItemData>());
+	Data022->MyName = FString("Data023");
+
+	Data02->Children.Add(Data021);
+	Data02->Children.Add(Data022);
+	Data02->Children.Add(Data023);
+
 	
 	TreeItemDatas.Add(Data01);
+	TreeItemDatas.Add(Data02);
 	
 	Arguments.TreeItemsSource(&TreeItemDatas);
 	Arguments.OnGenerateRow_Raw(this,&SMyTreeView::GenerateRowItem);
