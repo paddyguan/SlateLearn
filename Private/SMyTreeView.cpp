@@ -1,4 +1,4 @@
-﻿#include "SMyTreeView.h"
+#include "SMyTreeView.h"
 
 void SMyTreeView::Construct(const FArguments& InArgs)
 {
@@ -8,8 +8,10 @@ void SMyTreeView::Construct(const FArguments& InArgs)
 
 	TSharedPtr<UTreeItemData> Data01 = MakeShareable(NewObject<UTreeItemData>());
 	Data01->MyName = FString("Data01");
+
 	TSharedPtr<UTreeItemData> Data011 = MakeShareable(NewObject<UTreeItemData>());
 	Data011->MyName = FString("Data011");
+
 	TSharedPtr<UTreeItemData> Data012 = MakeShareable(NewObject<UTreeItemData>());
 	Data012->MyName = FString("Data012");
 
@@ -18,12 +20,15 @@ void SMyTreeView::Construct(const FArguments& InArgs)
 
 	TSharedPtr<UTreeItemData> Data02 = MakeShareable(NewObject<UTreeItemData>());
 	Data02->MyName = FString("Data02");
+
 	TSharedPtr<UTreeItemData> Data021 = MakeShareable(NewObject<UTreeItemData>());
 	Data021->MyName = FString("Data021");
+
 	TSharedPtr<UTreeItemData> Data022 = MakeShareable(NewObject<UTreeItemData>());
 	Data022->MyName = FString("Data022");
+
 	TSharedPtr<UTreeItemData> Data023 = MakeShareable(NewObject<UTreeItemData>());
-	Data022->MyName = FString("Data023");
+	Data023->MyName = FString("Data023");
 
 	Data02->Children.Add(Data021);
 	Data02->Children.Add(Data022);
@@ -48,8 +53,19 @@ TSharedRef<ITableRow> SMyTreeView::GenerateRowItem(TSharedPtr<UTreeItemData> InT
 {
 	return SNew(STableRow<TSharedPtr<UTreeItemData>>,OwnerTable)
 	[
-		SNew(STextBlock)
-		.Text(FText::FromString(InTreeItemData->MyName))
+		SNew(SHorizontalBox)
+		+ SHorizontalBox::Slot()
+		.FillWidth(2.0f)
+		[
+			SNew(STextBlock)
+			.Text(FText::FromString(InTreeItemData->MyName))
+		]
+		+ SHorizontalBox::Slot()
+		[
+			SNew(STextBlock)
+			.Text(FText::FromString(FString::SanitizeFloat(InTreeItemData->MyHeight)))
+		]
+
 	];
 }
 

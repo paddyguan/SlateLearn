@@ -1,4 +1,4 @@
-﻿#pragma once
+#pragma once
 
 #include "Widgets/Views/STreeView.h"
 #include "CoreMinimal.h"
@@ -12,7 +12,7 @@ class UTreeItemData : public UObject
 
 public:
 	FString MyName;
-	float MyHeight;
+	float MyHeight = 10.f;
 
 	TArray<TSharedPtr<UTreeItemData>> Children;
 	

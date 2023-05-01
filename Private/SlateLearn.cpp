@@ -10,6 +10,8 @@
 
 #include "SMyButton.h"
 #include "SMyCanvas.h"
+#include "MyEditor.h"
+#include "SMyLeafWidget.h"
 
 
 DEFINE_LOG_CATEGORY_STATIC(LogSlateLearn, Log, All);
@@ -23,21 +25,49 @@ INT32_MAIN_INT32_ARGC_TCHAR_ARGV()
 	// GEngineLoop.PreInit(ArgC, ArgV);
 	
 	FSlateApplication::InitializeAsStandaloneApplication(GetStandardStandaloneRenderer());
-	// TSharedPtr<SMyButton> MyButton01 = SNew(SMyButton);
-	TSharedPtr<SMyCanvas> MyCanvas01 = SNew(SMyCanvas);
+
+	/*----------------------------------------------------------*/
+	//这是一段简单的生成自定义LeafWidget的方式
 	
+
+	//TSharedPtr<SMyLeafWidget> MyLeafWidget = SNew(SMyLeafWidget)
+	//	.StartPoint(FVector2d(100,100))
+	//	.EndPoint(FVector2d(500,500));
+
+	////创建一个窗口
+	//TSharedPtr<SWindow> MainWindow = SNew(SWindow)
+	//	.ClientSize(FVector2D(800, 600))
+	//	[
+	//		// SNullWidget::NullWidget
+	//		MyLeafWidget.ToSharedRef()
+
+	//	];
+
+
+	//FSlateApplication::Get().AddWindow(MainWindow.ToSharedRef());
+
+
+	/*----------------------------------------------------------*/
+	//这是一段简单的生成一个Canvas的方式
+	TSharedPtr<SMyCanvas> MyCanvas01 = SNew(SMyCanvas);
 
 	//创建一个窗口
 	TSharedPtr<SWindow> MainWindow = SNew(SWindow)
 		.ClientSize(FVector2D(800, 600))
 		[
 			// SNullWidget::NullWidget
-		MyCanvas01.ToSharedRef()
+			MyCanvas01.ToSharedRef()
+
 		];
 
-
 	FSlateApplication::Get().AddWindow(MainWindow.ToSharedRef());
-	
+
+
+	/*----------------------------------------------------------*/
+	//使用自定义的Editor类
+	//MyEditor Editor = MyEditor();
+
+
 	// loop while the server does the rest
 	while (!IsEngineExitRequested())
 	{
